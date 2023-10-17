@@ -1,0 +1,87 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'idea'
+    id 'eclipse'
+    id 'io.franzbecker.gradle-lombok' version '3.1.0'
+    id "se.thinkcode.cucumber-runner" version "0.0.8"
+}
+
+apply from: rootProject.file('gradle/source-sets.gradle')
+apply from: rootProject.file('gradle/configuration.gradle')
+apply from: rootProject.file('gradle/dependencies.gradle')
+apply from: rootProject.file('gradle/wrapper.gradle')
+
+ext {
+    joptSimpleVersion = '4.6'
+}
+
+group 'edp'
+version '1.0'
+sourceCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.fork = true
+}
+
+def jarFile = "edp-autotests-1.0.jar"
+
+//task runTests(dependsOn: [clean, bootJar]) {
+//    description = "Starting tests with jar"
+//}
+//
+//task copyJar(type: Copy, dependsOn: [runTests]) {
+//    copy {
+//        from "${buildDir}/libs/$jarFile"
+//        into "${projectDir}"
+//    }
+//}
+//
+//task runJar(dependsOn: [copyJar]) {
+//    String threads = System.getProperty("threads.number") != null ? System.getProperty("threads.number") : "1"
+//    String tags = System.getProperty("tags") != null ? System.getProperty("tags") : "@Build"
+//    javaexec {
+//        main = "-jar"
+//        systemProperties = [
+//                "browser.name": System.getProperty("browser.name"),
+//                "moon.url"    : System.getProperty("moon.url"),
+//                "namespace"   : System.getProperty("namespace"),
+//                "version"     : System.getProperty("version")
+//        ]
+//        args = [
+//                "$jarFile",
+//                "classpath:features", "--threads", threads,
+//                "--tags", tags
+//        ]
+//    }
+//}
+//
+//task deleteJar(type: Delete, dependsOn: [runJar]) {
+//    delete files("${projectDir}/$jarFile")
+//}
+bootRun {
+    String threads = System.getProperty("threads.number", "1")
+    String tags = System.getProperty("tags", "@Build")
+    main = "edp.CucumberConsoleApplication"
+    systemProperties = [
+            "browser.name"    : System.getProperty("browser.name"),
+            "browser.type"    : System.getProperty("browser.type"),
+            "browser.version" : System.getProperty("browser.version"),
+            "moon.url"        : System.getProperty("moon.url"),
+            "kubeconfig"      : System.getProperty("kubeconfig"),
+            "namespace"       : System.getProperty("namespace"),
+            "secret.name"     : System.getProperty("secret.name"),
+            "secret.namespace": System.getProperty("secret.namespace"),
+            "cluster"         : System.getProperty("cluster"),
+            "ci.tool"         : System.getProperty("ci.tool"),
+            "git.provider"    : System.getProperty("git.provider"),
+            "tagz"            : tags,
+    ]
+    args = [
+            "classpath:features", "--threads", threads,
+            "--tags", tags,
+            "--plugin", "com.epam.reportportal.cucumber.ScenarioReporter"
+    ]
+}

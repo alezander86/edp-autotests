@@ -1,0 +1,205 @@
+{
+  "description": "",
+  "": "",
+  "properties": {
+    "stapler-class-bag": "true",
+    "org-jenkinsci-plugins-authorizeproject-ConfigurationPermissionEnforcer": {
+      "stapler-class": "org.jenkinsci.plugins.authorizeproject.ConfigurationPermissionEnforcer",
+      "$class": "org.jenkinsci.plugins.authorizeproject.ConfigurationPermissionEnforcer"
+    },
+    "hudson-plugins-jira-JiraProjectProperty": {
+      "siteName": ""
+    },
+    "jenkins-model-BuildDiscarderProperty": {
+      "specified": false,
+      "": "0",
+      "strategy": {
+        "daysToKeepStr": "",
+        "numToKeepStr": "",
+        "artifactDaysToKeepStr": "",
+        "artifactNumToKeepStr": "",
+        "stapler-class": "hudson.tasks.LogRotator",
+        "$class": "hudson.tasks.LogRotator"
+      }
+    },
+    "com-coravy-hudson-plugins-github-GithubProjectProperty": {},
+    "com-dabsquared-gitlabjenkins-connection-GitLabConnectionProperty": {
+      "hasCustomWorkspace": false,
+      "customWorkspace": "",
+      "gitLabConnection": "",
+      "useAlternativeCredential": false,
+      "includeUser": "false",
+      "jobCredentialId": ""
+    },
+    "org-jenkins-plugins-lockableresources-RequiredResourcesProperty": {},
+    "hudson-model-ParametersDefinitionProperty": {
+      "specified": true,
+      "parameterDefinitions": [
+        {
+          "name": "NAME",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "TYPE",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "BUILD_TOOL",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "BRANCH",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "GIT_SERVER_CR_NAME",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "GIT_SERVER_CR_VERSION",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "GIT_SERVER",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "GIT_SSH_PORT",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "GIT_USERNAME",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "GIT_CREDENTIALS_ID",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "REPOSITORY_PATH",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "JIRA_INTEGRATION_ENABLED",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "DEFAULT_BRANCH",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        },
+        {
+          "name": "PLATFORM_TYPE",
+          "defaultValue": "",
+          "description": "",
+          "": "",
+          "trim": false,
+          "stapler-class": "hudson.model.StringParameterDefinition",
+          "$class": "hudson.model.StringParameterDefinition"
+        }
+      ]
+    },
+    "jenkins-branch-RateLimitBranchProperty$JobPropertyImpl": {}
+  },
+  "enable": true,
+  "concurrentBuild": true,
+  "hasSlaveAffinity": true,
+  "label": "master",
+  "hasCustomQuietPeriod": false,
+  "quiet_period": "1",
+  "hasCustomScmCheckoutRetryCount": false,
+  "scmCheckoutRetryCount": "0",
+  "blockBuildWhenUpstreamBuilding": false,
+  "blockBuildWhenDownstreamBuilding": false,
+  "hasCustomWorkspace": false,
+  "customWorkspace": "",
+  "displayNameOrNull": "",
+  "scm": {
+    "value": "0",
+    "stapler-class": "hudson.scm.NullSCM",
+    "$class": "hudson.scm.NullSCM"
+  },
+  "builder": {
+    "useScriptText": "true",
+    "scriptText": "import groovy.json.*\nimport jenkins.model.Jenkins\nimport javaposse.jobdsl.plugin.*\nimport com.cloudbees.hudson.plugins.folder.*\n\nJenkins jenkins = Jenkins.instance\ndef stages = [:]\ndef jiraIntegrationEnabled = Boolean.parseBoolean(\"${JIRA_INTEGRATION_ENABLED}\" as String)\ndef commitValidateStage = jiraIntegrationEnabled ? ',{\"name\": \"commit-validate\"}' : ''\ndef createJIMStage = jiraIntegrationEnabled ? ',{\"name\": \"create-jira-issue-metadata\"}' : ''\ndef platformType = \"${PLATFORM_TYPE}\"\ndef buildStage = platformType == \"kubernetes\" ? ',{\"name\": \"build-image-kaniko\"}' : ',{\"name\": \"build-image-from-dockerfile\"}'\ndef buildTool = \"${BUILD_TOOL}\"\ndef goBuildStage = buildTool.toString() == \"go\" ? ',{\"name\": \"build\"}' : ',{\"name\": \"compile\"}'\n\nstages['Code-review-application'] = '[{\"name\": \"checkout\"}' + \"${commitValidateStage}\" + goBuildStage +\n        ',{\"name\": \"tests\"},[{\"name\": \"sonar\"},{\"name\": \"dockerfile-lint\"},{\"name\": \"helm-lint\"}]]'\nstages['Code-review-library'] = '[{\"name\": \"checkout\"}' + \"${commitValidateStage}\" +\n        ',{\"name\": \"compile\"},{\"name\": \"tests\"},' +\n        '{\"name\": \"sonar\"}]'\nstages['Code-review-autotests'] = '[{\"name\": \"checkout\"}' + \"${commitValidateStage}\" +\n        ',{\"name\": \"tests\"},{\"name\": \"sonar\"}' + ']'\nstages['Code-review-default'] = '[{\"name\": \"checkout\"}' + \"${commitValidateStage}\" + ']'\nstages['Code-review-library-terraform'] = '[{\"name\": \"checkout\"}' + \"${commitValidateStage}\" +\n        ',{\"name\": \"terraform-lint\"}]'\nstages['Code-review-library-opa'] = '[{\"name\": \"checkout\"}' + \"${commitValidateStage}\" +\n        ',{\"name\": \"tests\"}]'\nstages['Code-review-library-codenarc'] = '[{\"name\": \"checkout\"}' + \"${commitValidateStage}\" +\n        ',{\"name\": \"sonar\"},{\"name\": \"build\"}]'\nstages['Code-review-library-kaniko'] = '[{\"name\": \"checkout\"}' + \"${commitValidateStage}\" +\n ',{\"name\": \"dockerfile-lint\"},{\"name\": \"dockerbuild-verify\"}]'\n\nstages['Build-library-maven'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"compile\"},' +\n        '{\"name\": \"tests\"},{\"name\": \"sonar\"},{\"name\": \"build\"},{\"name\": \"push\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-library-npm'] = stages['Build-library-maven']\nstages['Build-library-gradle'] = stages['Build-library-maven']\nstages['Build-library-dotnet'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"compile\"},' +\n        '{\"name\": \"tests\"},{\"name\": \"sonar\"},{\"name\": \"push\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-library-python'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"compile\"},' +\n        '{\"name\": \"tests\"},{\"name\": \"sonar\"},{\"name\": \"push\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-library-terraform'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"terraform-lint\"}' +\n        ',{\"name\": \"terraform-plan\"},{\"name\": \"terraform-apply\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-library-opa'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"}' +\n        ',{\"name\": \"tests\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-library-codenarc'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"sonar\"},{\"name\": \"build\"}' +\n        \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-library-kaniko'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"}' +\n ',{\"name\": \"dockerfile-lint\"},{\"name\": \"build-image-kaniko\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\n\nstages['Build-autotests-maven'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-autotests-gradle'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\n\nstages['Build-application-maven'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"sast\"},{\"name\": \"compile\"},' +\n        '{\"name\": \"tests\"},{\"name\": \"sonar\"},{\"name\": \"build\"}' + \"${buildStage}\" +\n        ',{\"name\": \"push\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-application-npm'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"compile\"},' +\n        '{\"name\": \"tests\"},{\"name\": \"sonar\"},{\"name\": \"build\"}' + \"${buildStage}\" +\n        ',{\"name\": \"push\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-application-gradle'] = stages['Build-application-maven']\nstages['Build-application-dotnet'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"compile\"},' +\n        '{\"name\": \"tests\"},{\"name\": \"sonar\"}' + \"${buildStage}\" +\n        ',{\"name\": \"push\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-application-go'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"sast\"},{\"name\": \"tests\"},{\"name\": \"sonar\"},' +\n                                    '{\"name\": \"build\"}' + \"${buildStage}\" + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\nstages['Build-application-python'] = '[{\"name\": \"checkout\"},{\"name\": \"get-version\"},{\"name\": \"compile\"},{\"name\": \"tests\"},{\"name\": \"sonar\"}' +\n                                    \"${buildStage}\" + ',{\"name\":\"push\"}' + \"${createJIMStage}\" + ',{\"name\": \"git-tag\"}]'\n\nstages['Create-release'] = '[{\"name\": \"checkout\"},{\"name\": \"create-branch\"},{\"name\": \"trigger-job\"}]'\n\ndef buildToolsOutOfTheBox = [\"maven\",\"npm\",\"gradle\",\"dotnet\",\"none\",\"go\",\"python\"]\ndef defaultStages = '[{\"name\": \"checkout\"}' + \"${createJIMStage}\" + ']'\n\ndef codebaseName = \"${NAME}\"\ndef gitServerCrName = \"${GIT_SERVER_CR_NAME}\"\ndef gitServerCrVersion = \"${GIT_SERVER_CR_VERSION}\"\ndef gitCredentialsId = \"${GIT_CREDENTIALS_ID ? GIT_CREDENTIALS_ID : 'gerrit-ciuser-sshkey'}\"\ndef repositoryPath = \"${REPOSITORY_PATH.replaceAll(~/:\\d+\\\\//,\"/\")}\"\ndef githubRepository = \"https://${repositoryPath.split(\"@\")[1]}\"\ndef defaultBranch = \"${DEFAULT_BRANCH}\"\n\ndef codebaseFolder = jenkins.getItem(codebaseName)\nif (codebaseFolder == null) {\n    folder(codebaseName)\n}\n\ncreateListView(codebaseName, \"Releases\")\ncreateReleasePipeline(\"Create-release-${codebaseName}\", codebaseName, stages[\"Create-release\"], \"CreateRelease\",\n        repositoryPath, gitCredentialsId, gitServerCrName, gitServerCrVersion, jiraIntegrationEnabled, platformType, defaultBranch)\n\nif (buildTool.toString().equalsIgnoreCase('none')) {\n    return true\n}\n\nif (BRANCH) {\n    def branch = \"${BRANCH}\"\n    def formattedBranch = \"${branch.toUpperCase().replaceAll(/\\\\//, \"-\")}\"\n    createListView(codebaseName, formattedBranch)\n\n    def type = \"${TYPE}\"\n    def supBuildTool = buildToolsOutOfTheBox.contains(buildTool.toString())\n    def crKey = getStageKeyName(buildTool).toString()\n    createCodeReviewPipeline(\"Code-review-${codebaseName}\", codebaseName, stages.get(crKey, defaultStages), \"CodeReview\",\n            repositoryPath, gitCredentialsId, branch, gitServerCrName, gitServerCrVersion, githubRepository)\n    registerWebHook(repositoryPath)\n\n\n    def buildKey = \"Build-${type}-${buildTool.toLowerCase()}\".toString()\n\n    if (type.equalsIgnoreCase('application') || type.equalsIgnoreCase('library') || type.equalsIgnoreCase('autotests')) {\n        def jobExists = false\n        if(\"${formattedBranch}-Build-${codebaseName}\".toString() in Jenkins.instance.getAllItems().collect{it.name})\n            jobExists = true\n        createBuildPipeline(\"Build-${codebaseName}\", codebaseName, stages.get(buildKey, defaultStages), \"Build\",\n                repositoryPath, gitCredentialsId, branch, gitServerCrName, gitServerCrVersion, githubRepository)\n        registerWebHook(repositoryPath, 'build')\n\n        if(!jobExists)\n          queue(\"${codebaseName}/${formattedBranch}-Build-${codebaseName}\")\n    }\n}\n\ndef getStageKeyName(buildTool) {\n    if (buildTool.toString().equalsIgnoreCase('terraform')) {\n        return \"Code-review-library-terraform\"\n    }\n    if (buildTool.toString().equalsIgnoreCase('opa')) {\n        return \"Code-review-library-opa\"\n    }\n    if (buildTool.toString().equalsIgnoreCase('codenarc')) {\n        return \"Code-review-library-codenarc\"\n    }\n    if (buildTool.toString().equalsIgnoreCase('kaniko')) {\n        return \"Code-review-library-kaniko\"\n    }\n    def buildToolsOutOfTheBox = [\"maven\",\"npm\",\"gradle\",\"dotnet\",\"none\",\"go\",\"python\"]\n    def supBuildTool = buildToolsOutOfTheBox.contains(buildTool.toString())\n    return supBuildTool ? \"Code-review-${TYPE}\" : \"Code-review-default\"\n}\n\ndef createCodeReviewPipeline(pipelineName, codebaseName, codebaseStages, pipelineType, repository, credId, defaultBranch, gitServerCrName, gitServerCrVersion, githubRepository) {\n    pipelineJob(\"${codebaseName}/${defaultBranch.toUpperCase().replaceAll(/\\\\//, \"-\")}-${pipelineName}\") {\n        logRotator {\n            numToKeep(10)\n            daysToKeep(7)\n        }\n        definition {\n            cps {\n                script(\"@Library(['edp-library-stages', 'edp-library-pipelines']) _ \\n\\n${pipelineType}()\")\n                sandbox(true)\n            }\n            parameters {\n                stringParam(\"GIT_SERVER_CR_NAME\", \"${gitServerCrName}\", \"Name of Git Server CR to generate link to Git server\")\n                stringParam(\"GIT_SERVER_CR_VERSION\", \"${gitServerCrVersion}\", \"Version of GitServer CR Resource\")\n                stringParam(\"STAGES\", \"${codebaseStages}\", \"Consequence of stages in JSON format to be run during execution\")\n                stringParam(\"GERRIT_PROJECT_NAME\", \"${codebaseName}\", \"Gerrit project name(Codebase name) to be build\")\n                if (pipelineName.contains(\"Build\"))\n                    stringParam(\"BRANCH\", \"${defaultBranch}\", \"Branch to build artifact from\")\n                else\n                    stringParam(\"BRANCH\", \"\\${ghprbActualCommit}\", \"Branch to build artifact from\")\n            }\n        }\n        triggers {\n            githubPullRequest {\n                cron('')\n                onlyTriggerPhrase(false)\n                useGitHubHooks(true)\n                permitAll(true)\n                autoCloseFailedPullRequests(false)\n                displayBuildErrorsOnDownstreamBuilds(false)\n                whiteListTargetBranches([defaultBranch.toString()])\n                extensions {\n                    commitStatus {\n                        context('Jenkins Code-Review')\n                        triggeredStatus('Build is Triggered')\n                        startedStatus('Build is Started')\n                        addTestResults(true)\n                        completedStatus('SUCCESS', 'Verified')\n                        completedStatus('FAILURE', 'Failed')\n                        completedStatus('PENDING', 'Penging')\n                        completedStatus('ERROR', 'Error')\n                    }\n                }\n            }\n        }\n        properties {\n            githubProjectProperty {\n                projectUrlStr(\"${githubRepository}\")\n            }\n        }\n    }\n}\n\ndef createBuildPipeline(pipelineName, codebaseName, codebaseStages, pipelineType, repository, credId, defaultBranch, gitServerCrName, gitServerCrVersion, githubRepository) {\n    pipelineJob(\"${codebaseName}/${defaultBranch.toUpperCase().replaceAll(/\\\\//, \"-\")}-${pipelineName}\") {\n        logRotator {\n            numToKeep(10)\n            daysToKeep(7)\n        }\n        definition {\n            cps {\n                script(\"@Library(['edp-library-stages', 'edp-library-pipelines']) _ \\n\\nnode {\\n    git credentialsId: \\'${credId}\\', url: \\'${repository}\\', branch: \\'${BRANCH}\\'\\n}\\n\\n${pipelineType}()\")\n                sandbox(true)\n            }\n            parameters {\n                stringParam(\"GIT_SERVER_CR_NAME\", \"${gitServerCrName}\", \"Name of Git Server CR to generate link to Git server\")\n                stringParam(\"GIT_SERVER_CR_VERSION\", \"${gitServerCrVersion}\", \"Version of GitServer CR Resource\")\n                stringParam(\"STAGES\", \"${codebaseStages}\", \"Consequence of stages in JSON format to be run during execution\")\n                stringParam(\"GERRIT_PROJECT_NAME\", \"${codebaseName}\", \"Gerrit project name(Codebase name) to be build\")\n                stringParam(\"BRANCH\", \"${defaultBranch}\", \"Branch to run from\")\n            }\n        }\n        triggers {\n            gitHubPushTrigger()\n        }\n        properties {\n            githubProjectProperty {\n                projectUrlStr(\"${githubRepository}\")\n            }\n        }\n    }\n}\n\n\ndef createListView(codebaseName, branchName) {\n    listView(\"${codebaseName}/${branchName}\") {\n        if (branchName.toLowerCase() == \"releases\") {\n            jobFilters {\n                regex {\n                    matchType(MatchType.INCLUDE_MATCHED)\n                    matchValue(RegexMatchValue.NAME)\n                    regex(\"^Create-release.*\")\n                }\n            }\n        } else {\n            jobFilters {\n                regex {\n                    matchType(MatchType.INCLUDE_MATCHED)\n                    matchValue(RegexMatchValue.NAME)\n                    regex(\"^${branchName}-(Code-review|Build).*\")\n                }\n            }\n        }\n        columns {\n            status()\n            weather()\n            name()\n            lastSuccess()\n            lastFailure()\n            lastDuration()\n            buildButton()\n        }\n    }\n}\n\ndef createReleasePipeline(pipelineName, codebaseName, codebaseStages, pipelineType, repository, credId,\n gitServerCrName, gitServerCrVersion, jiraIntegrationEnabled, platformType, defaultBranch) {\n    pipelineJob(\"${codebaseName}/${pipelineName}\") {\n        logRotator {\n            numToKeep(14)\n            daysToKeep(30)\n        }\n        definition {\n            cps {\n                script(\"@Library(['edp-library-stages', 'edp-library-pipelines']) _ \\n\\n${pipelineType}()\")\n                sandbox(true)\n            }\n            parameters {\n                stringParam(\"STAGES\", \"${codebaseStages}\", \"\")\n                if (pipelineName.contains(\"Create-release\")) {\n                    stringParam(\"JIRA_INTEGRATION_ENABLED\", \"${jiraIntegrationEnabled}\", \"Is Jira integration enabled\")\n                    stringParam(\"PLATFORM_TYPE\", \"${platformType}\", \"Platform type\")\n                    stringParam(\"GERRIT_PROJECT\", \"${codebaseName}\", \"\")\n                    stringParam(\"RELEASE_NAME\", \"\", \"Name of the release(branch to be created)\")\n                    stringParam(\"COMMIT_ID\", \"\", \"Commit ID that will be used to create branch from for new release. If empty, DEFAULT_BRANCH will be used\")\n                    stringParam(\"GIT_SERVER_CR_NAME\", \"${gitServerCrName}\", \"Name of Git Server CR to generate link to Git server\")\n                    stringParam(\"GIT_SERVER_CR_VERSION\", \"${gitServerCrVersion}\", \"Version of GitServer CR Resource\")\n                    stringParam(\"REPOSITORY_PATH\", \"${repository}\", \"Full repository path\")\n                    stringParam(\"DEFAULT_BRANCH\", \"${defaultBranch}\", \"Default repository branch\")\n                }\n            }\n        }\n    }\n}\n\ndef registerWebHook(repositoryPath, type = 'code-review') {\n    def url = repositoryPath.split('@')[1].split('/')[0]\n    def owner = repositoryPath.split('@')[1].split('/')[1]\n    def repo = repositoryPath.split('@')[1].split('/')[2]\n    def apiUrl = 'https://api.' + url + '/repos/' + owner + '/' + repo + '/hooks'\n    def webhookUrl = ''\n    def webhookConfig = [:]\n    def config = [:]\n    def events = []\n\n    if (type.equalsIgnoreCase('build')) {\n        webhookUrl = System.getenv('JENKINS_UI_URL') + \"/github-webhook/\"\n        events = [\"push\"]\n        config[\"url\"] = webhookUrl\n        config[\"content_type\"] = \"json\"\n        config[\"insecure_ssl\"] = 0\n        webhookConfig[\"name\"] = \"web\"\n        webhookConfig[\"config\"] = config\n        webhookConfig[\"events\"] = events\n        webhookConfig[\"active\"] = true\n\n    } else {\n        webhookUrl = System.getenv('JENKINS_UI_URL') + \"/ghprbhook/\"\n        events = [\"issue_comment\",\"pull_request\"]\n        config[\"url\"] = webhookUrl\n        config[\"content_type\"] = \"form\"\n        config[\"insecure_ssl\"] = 0\n        webhookConfig[\"name\"] = \"web\"\n        webhookConfig[\"config\"] = config\n        webhookConfig[\"events\"] = events\n        webhookConfig[\"active\"] = true\n    }\n\n    def requestBody = JsonOutput.toJson(webhookConfig)\n    def http = new URL(apiUrl).openConnection() as HttpURLConnection\n    http.setRequestMethod('POST')\n    http.setDoOutput(true)\n    println(apiUrl)\n    http.setRequestProperty(\"Accept\", 'application/json')\n    http.setRequestProperty(\"Content-Type\", 'application/json')\n    http.setRequestProperty(\"Authorization\", \"token ${getSecretValue('github-access-token')}\")\n    http.outputStream.write(requestBody.getBytes(\"UTF-8\"))\n    http.connect()\n    println(http.responseCode)\n\n    if (http.responseCode == 201) {\n        response = new JsonSlurper().parseText(http.inputStream.getText('UTF-8'))\n    } else {\n        response = new JsonSlurper().parseText(http.errorStream.getText('UTF-8'))\n    }\n\n    println \"response: ${response}\"\n}\n\ndef getSecretValue(name) {\n    def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(\n            com.cloudbees.plugins.credentials.common.StandardCredentials.class,\n            Jenkins.instance,\n            null,\n            null\n    )\n\n    def secret = creds.find { it.properties['id'] == name }\n    return secret != null ? secret['secret'] : null\n}\n",
+    "": "",
+    "targets": "",
+    "ignoreMissingFiles": false,
+    "ignoreExisting": false,
+    "failOnSeedCollision": false,
+    "removedJobAction": "IGNORE",
+    "removedViewAction": "IGNORE",
+    "removedConfigFilesAction": "IGNORE",
+    "lookupStrategy": "JENKINS_ROOT",
+    "additionalClasspath": "",
+    "failOnMissingPlugin": false,
+    "unstableOnDeprecation": false,
+    "stapler-class": "javaposse.jobdsl.plugin.ExecuteDslScripts",
+    "$class": "javaposse.jobdsl.plugin.ExecuteDslScripts"
+  },
+  "core:apply": ""
+}

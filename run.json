@@ -1,0 +1,8 @@
+{
+  "sit": "./gradlew bootRun -Dcluster=sandbox -Dthreads.number=5 -Dtags=@TektonSmoke '-Dci.tool=tekton' -Dbrowser.name=chrome -Dbrowser.version=114.0.5735.133-5 -Dbrowser.type=remote -Dmoon.url=https://moon.eks-sandbox.aws.main.edp.projects.epam.com/wd/hub",
+  "dev": "./gradlew bootRun -Dcluster=sandbox -Dthreads.number=5 -Dtags=@TektonSmoke '-Dci.tool=tekton' -Dbrowser.name=chrome -Dbrowser.version=114.0.5735.133-5 -Dbrowser.type=remote -Dmoon.url=https://moon.eks-sandbox.aws.main.edp.projects.epam.com/wd/hub",
+  "qa": "./gradlew bootRun -Dcluster=sandbox -Dthreads.number=5 -Dtags=@Qa '-Dci.tool=tekton' -Dbrowser.name=chrome -Dbrowser.version=114.0.5735.133-5 -Dbrowser.type=remote -Dmoon.url=https://moon.eks-sandbox.aws.main.edp.projects.epam.com/wd/hub",
+  "qa2": "./gradlew bootRun -Dcluster=sandbox -Dthreads.number=5 -Dtags=@Qa '-Dci.tool=tekton' -Dbrowser.name=chrome -Dbrowser.version=114.0.5735.133-5 -Dbrowser.type=remote -Dmoon.url=https://moon.eks-sandbox.aws.main.edp.projects.epam.com/wd/hub",
+  "sit-okd": "./gradlew bootRun -Dcluster=okd -Dthreads.number=5 -Dtags=@TektonSmoke '-Dci.tool=tekton' -Dbrowser.name=chrome -Dbrowser.version=114.0.5735.133-5 -Dbrowser.type=remote -Dmoon.url=https://moon.eks-sandbox.aws.main.edp.projects.epam.com/wd/hub",
+  "sit-okd-shared": "./gradlew bootRun -Dcluster=okd -Dthreads.number=5 -Dtags=@TektonSmoke '-Dci.tool=tekton' -Dbrowser.name=chrome -Dbrowser.version=114.0.5735.133-5 -Dbrowser.type=remote -Dmoon.url=https://moon.eks-sandbox.aws.main.edp.projects.epam.com/wd/hub"
+}
